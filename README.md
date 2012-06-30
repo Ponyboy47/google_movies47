@@ -1,4 +1,4 @@
-# MovieShowTimes
+# GoogleMovies47
 
 Get Movies Show Times for all theaters near a given location.
 
@@ -8,7 +8,7 @@ The gem crawls and parses Google Movies pages.
 
 Add this line to your application's Gemfile:
 
-    gem 'movie_show_times'
+    gem 'google_movies47'
 
 And then execute:
 
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install movie_show_times
+    $ gem install google_movies47
 
 ## Usage
 
@@ -27,7 +27,7 @@ Or install it yourself as:
 
 A location is required to initialize the crawling. By default, it gets show times for the current date in English.
 
-    movieShowTimes = MovieShowTimes::Crawler.new({ :city => 'Buenos Aires', :state => 'Argentina' })
+    movieShowTimes = GoogleMovies47::Crawler.new({ :city => 'Buenos Aires', :state => 'Argentina' })
 
     theater = movieShowTimes.theaters['Monumental']
     puts theater # => { :name => 'Monumental', :info => 'Lavalle 780, Buenos Aires, Argentina - 0-11-4393-9008',
@@ -45,13 +45,13 @@ A location is required to initialize the crawling. By default, it gets show time
 
 You can retrieve movie show times for following days. There is no definition for how far in the future will this information be available, so use with caution as it may be the cause for retrieving no show times at all.
 
-    movieShowTimes = MovieShowTimes::Crawler.new({ 	:city => 'Buenos Aires', :state => 'Argentina',
+    movieShowTimes = GoogleMovies47::Crawler.new({ 	:city => 'Buenos Aires', :state => 'Argentina',
 													:days_ahead => 2
  												})
 
 Getting show times info in Spanish:
 
-    movieShowTimes = MovieShowTimes::Crawler.new({ 
+    movieShowTimes = GoogleMovies47::Crawler.new({ 
 													:city => 'Buenos Aires',
 													:state => 'Argentina',
 													:language => 'es'
