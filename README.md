@@ -29,7 +29,7 @@ A location is required to initialize the crawling. By default, it gets show time
 
     movieShowTimes = GoogleMovies47::Crawler.new({ :city => 'Buenos Aires', :state => 'Argentina' })
 
-    theater = movieShowTimes.theaters['Monumental']
+    theater = movieShowTimes.theaters[0]
     puts theater # => { :name => 'Monumental', :info => 'Lavalle 780, Buenos Aires, Argentina - 0-11-4393-9008',
                         :movies => [ ... ]
                       }
