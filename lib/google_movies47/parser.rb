@@ -41,10 +41,10 @@ module GoogleMovies47
           movie_times.each do |mt|
             time = mt.text.strip
             times << time
-            x = x + 1
           end
           
           showtimes << { :name => movie_name, :language => movie_info[:language], :times => times }
+          x = x + 1
         end
         
         @theaters[y] = { :name => theater_name, :info => theater_info, :movies => showtimes }
