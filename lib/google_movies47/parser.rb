@@ -11,10 +11,10 @@ module GoogleMovies47
       @language = language
       @language_parser = GoogleMovies47::LanguageParser.new(language)
       @genre_parser = GoogleMovies47::GenreParser.new(language)
-      #@theaters = Hash.new
-      #@movies = Hash.new
-      @theaters = []
-      @movies = []
+      @theaters = Hash.new
+      @movies = Hash.new
+      #@theaters = []
+      #@movies = []
     end
     
     def parse_show_times(doc)
