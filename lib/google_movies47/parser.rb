@@ -20,6 +20,7 @@ module GoogleMovies47
       "//div[@class='movie_results']/div[@class='theater' and .//h2/a]"
       )
       
+      y = 0
       theater_elements.each do |t|
         theater_name = t.search(".//h2[@class='name']/a/text()").text
         theater_info = t.search(".//div[@class='info']/text()").text
@@ -46,7 +47,8 @@ module GoogleMovies47
           showtimes << { :name => movie_name, :language => movie_info[:language], :times => times }
         end
         
-        @theaters << { :name => theater_name, :info => theater_info, :movies => showtimes }
+        @theaters[y] << { :name => theater_name, :info => theater_info, :movies => showtimes }
+        y = y + 1
       end
       
     end
