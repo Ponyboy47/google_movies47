@@ -13,8 +13,6 @@ module GoogleMovies47
       @genre_parser = GoogleMovies47::GenreParser.new(language)
       @theaters = Hash.new
       @movies = Hash.new
-      @theaters = []
-      @movies = []
     end
     
     def parse_show_times(doc)
@@ -22,18 +20,21 @@ module GoogleMovies47
       "//div[@class='movie_results']/div[@class='theater' and .//h2/a]"
       )
       
+      @theaters = []
+      y = 0
       theater_elements.each do |t|
         theater_name = t.search(".//h2[@class='name']/a/text()").text
         theater_info = t.search(".//div[@class='info']/text()").text
         showtimes = []
-        movie_elements = t.search(".//div[@class='showtimes']//div[@class='movie']")
+        @movies = []
         x = 0
+        movie_elements = t.search(".//div[@class='showtimes']//div[@class='movie']")
         movie_elements.each do |m|
           movie_name = m.search(".//div[@class='name']/a/text()").text.strip
           movie_info_line = m.search(".//span[@class='info']/text()").text
           movie_info = parse_movie_info(movie_info_line)
           
-          @movies << { :name => movie_name, :info => movie_info } if @movies[x].nil?
+          @movies[x] = { :name => movie_name, :info => movie_info } if @movies[x].nil?
           
           movie_times = m.search(".//div[@class='times']/span/text()")
           times = []
@@ -46,7 +47,8 @@ module GoogleMovies47
           showtimes << { :name => movie_name, :language => movie_info[:language], :times => times }
         end
         
-        @theaters << { :name => theater_name, :info => theater_info, :movies => showtimes }
+        @theaters[y] = { :name => theater_name, :info => theater_info, :movies => showtimes }
+        y = y + 1
       end
       
     end
