@@ -11,8 +11,10 @@ module GoogleMovies47
       @language = language
       @language_parser = GoogleMovies47::LanguageParser.new(language)
       @genre_parser = GoogleMovies47::GenreParser.new(language)
-      @theaters = Hash.new
-      @movies = Hash.new
+      #@theaters = Hash.new
+      #@movies = Hash.new
+      @theaters = []
+      @movies = []
     end
     
     def parse_show_times(doc)
@@ -20,12 +22,10 @@ module GoogleMovies47
       "//div[@class='movie_results']/div[@class='theater' and .//h2/a]"
       )
       
-      @theaters = []
       theater_elements.each do |t|
         theater_name = t.search(".//h2[@class='name']/a/text()").text
         theater_info = t.search(".//div[@class='info']/text()").text
         showtimes = []
-        @movies = []
         movie_elements = t.search(".//div[@class='showtimes']//div[@class='movie']")
         x = 0
         movie_elements.each do |m|
