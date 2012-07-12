@@ -20,7 +20,7 @@ module GoogleMovies47
       @parser = GoogleMovies47::Parser.new(language)
       
       search_url = "http://www.google.com/movies?hl=#{language}" \
-                    "&near=#{CGI.escape(options[:city])}+#{CGI.escape(options[:state])}&date=#{days_ahead}"
+                    "&near=#{options[:city]}%2C+#{options[:state]}&date=#{days_ahead}"
       
       @agent = Mechanize.new
       page = @agent.get(search_url)
