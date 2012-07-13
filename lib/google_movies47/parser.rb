@@ -32,7 +32,7 @@ module GoogleMovies47
           movie_info_line = m.search(".//span[@class='info']/text()").text
           movie_info = parse_movie_info(movie_info_line)
           
-          @movies[x] = { :name => movie_name, :info => movie_info } if @movies[x].nil?
+          @movies[movie_name] = { :name => movie_name, :info => movie_info } if @movies[movie_name].nil?
           
           movie_times = m.search(".//div[@class='times']/span/text()")
           times = []
@@ -41,7 +41,7 @@ module GoogleMovies47
             times << time
           end
           
-          showtimes << { :name => movie_name, :language => movie_info[:language], :times => times }
+          showtimes[x] = { :name => movie_name, :language => movie_info[:language], :times => times }
           x = x + 1
         end
         
