@@ -19,15 +19,14 @@ module GoogleMovies47
       theater_elements = doc.xpath(
       "//div[@class='movie_results']/div[@class='theater' and .//h2/a]"
       )
-      
-      @theaters = []
+      x = 0
+      y = 0
       theater_elements.each do |t|
         theater_name = t.search(".//h2[@class='name']/a/text()").text
         theater_info = t.search(".//div[@class='info']/text()").text
         showtimes = []
-        @movies = []
-        x = 0
         movie_elements = t.search(".//div[@class='showtimes']//div[@class='movie']")
+        
         movie_elements.each do |m|
           movie_name = m.search(".//div[@class='name']/a/text()").text.strip
           movie_info_line = m.search(".//span[@class='info']/text()").text
@@ -46,7 +45,8 @@ module GoogleMovies47
           x = x + 1
         end
         
-        @theaters << { :name => theater_name, :info => theater_info, :movies => showtimes }
+        @theaters[y] = { :name => theater_name, :info => theater_info, :movies => showtimes }
+        y = y + 1
       end
       
     end
