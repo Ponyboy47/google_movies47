@@ -41,7 +41,7 @@ module GoogleMovies47
             times << time
           end
           
-          showtimes[x] = { :name => movie_name, :language => movie_info[:language], :times => times } if showtimes[x] != nil
+          showtimes[x] = { :name => movie_name, :language => movie_info[:language], :times => times } unless showtimes[x].nil?
           x = x + 1
         end
         
