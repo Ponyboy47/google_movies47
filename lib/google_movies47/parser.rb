@@ -19,7 +19,6 @@ module GoogleMovies47
       theater_elements = doc.xpath(
       "//div[@class='movie_results']/div[@class='theater' and .//h2/a]"
       )
-      x = 0
       y = 0
       theater_elements.each do |t|
         theater_name = t.search(".//h2[@class='name']/a/text()").text
@@ -41,8 +40,7 @@ module GoogleMovies47
             times << time
           end
           
-          showtimes[x] = { :name => movie_name, :language => movie_info[:language], :times => times } unless showtimes[x].nil?
-          x = x + 1
+          showtimes << { :name => movie_name, :language => movie_info[:language], :times => times }
         end
         
         @theaters[y] = { :name => theater_name, :info => theater_info, :movies => showtimes }
